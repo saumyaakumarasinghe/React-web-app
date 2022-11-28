@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
+//Import files
+import MovieCard from "./MovieCard";
 import './App.css';
 import SearchIcon from './search.svg';
 
@@ -14,17 +16,16 @@ const movie1 = {
     "Poster": "N/A"
 }
 
-//Main functional component
-const App = () => {
+const App = () => {                                             //Main functional component
+    const [movies, setMovies] = useState([]);
 
-    //Create a new function to fetch movies
-    const searchMovies = async(title) => {
+    const searchMovies = async(title) => {                      //Create a new function to fetch movies
         //Call API
         const response = await fetch(`${API_URL}&s=${title}`);
         //Get data from the API
         const data = await response.json();
 
-        console.log(data.Search);
+        setMovies(data.Search);
     
     }
 
@@ -50,20 +51,22 @@ const App = () => {
                 />
             </div>
 
-            <div className="container">
-                <div className="movie">
-                    <div>
-                        <p>{movie1.Year}</p>
-                    </div>
-                    <div>
-                        <img src={movie1.Poster !== 'N/A' ? movie1.Poster : 'https://via.placeholder.com/400'} alt={movie1.Title}/>
-                    </div>                    
-                    <div>
-                        <span>{movie1.Type}</span>
-                        <h3>{movie1.Title}</h3>
-                    </div>
-                </div>
-            </div>
+            {
+                movies?.length > 0
+                    ? (
+                        <div className="container">
+                            {movies.map((movie) => (
+                                <MovieCard movie={movie}/>
+                            ))}
+                        </div>
+                    ) :
+                    (
+                        <div className="empty">
+                            <h2>No movies found</h2>
+                        </div>
+                    )
+            }
+
         </div>
     );
 }
