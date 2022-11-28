@@ -1,3 +1,4 @@
+//Import hooks
 import { useState, useEffect } from "react";
 
 //Import files
@@ -6,15 +7,6 @@ import './App.css';
 import SearchIcon from './search.svg';
 
 const API_URL = 'http://www.omdbapi.com?apikey=7db2bc9c';
-
-//Movie onject
-const movie1 = {
-    "Title": "Spiderman",
-    "Year": "2010",
-    "imdbID": "tt1785572",
-    "Type": "movie",
-    "Poster": "N/A"
-}
 
 const App = () => {                                             //Main functional component
     const [movies, setMovies] = useState([]);
@@ -51,19 +43,19 @@ const App = () => {                                             //Main functiona
             </div>
 
             {
-                movies?.length > 0
-                    ? (
-                        <div className="container">
-                            {movies.map((movie) => (
-                                <MovieCard movie={movie}/>
-                            ))}
-                        </div>
-                    ) :
-                    (
-                        <div className="empty">
-                            <h2>No movies found</h2>
-                        </div>
-                    )
+            movies?.length > 0
+                ? (
+                    <div className="container">
+                        {movies.map((movie) => (
+                            <MovieCard movie={movie}/>
+                        ))}
+                    </div>
+                ) :
+                (
+                    <div className="empty">
+                        <h2>No movies found</h2>
+                    </div>
+                )
             }
 
         </div>
