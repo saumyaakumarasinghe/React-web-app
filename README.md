@@ -1,4 +1,5 @@
-### React Simple Web Application
+# MovieLand
+### - React Simple Web Application
 This project was bootstrapped with Create React App. It's a simple react web application to practice react.js for beginners. This application has used OMDB API key for the project.
 
 You can find the API key using https://www.omdbapi.com/apikey.aspx
